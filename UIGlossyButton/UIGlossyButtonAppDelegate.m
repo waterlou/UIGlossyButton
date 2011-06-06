@@ -7,8 +7,7 @@
 //
 
 #import "UIGlossyButtonAppDelegate.h"
-
-#import "UIGlossyButtonViewController.h"
+#import "TestButtonViewController.h"
 
 @implementation UIGlossyButtonAppDelegate
 

@@ -14,8 +14,11 @@
 		4947D825139CDA2400A98D25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D824139CDA2400A98D25 /* main.m */; };
 		4947D828139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D827139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m */; };
 		4947D82B139CDA2400A98D25 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4947D829139CDA2400A98D25 /* MainWindow.xib */; };
-		4947D82E139CDA2400A98D25 /* UIGlossyButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D82D139CDA2400A98D25 /* UIGlossyButtonViewController.m */; };
-		4947D831139CDA2400A98D25 /* UIGlossyButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4947D82F139CDA2400A98D25 /* UIGlossyButtonViewController.xib */; };
+		4947D83E139CDABE00A98D25 /* TestButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4947D837139CDABE00A98D25 /* TestButtonViewController.xib */; };
+		4947D83F139CDABE00A98D25 /* TestButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D838139CDABE00A98D25 /* TestButtonViewController.m */; };
+		4947D840139CDABE00A98D25 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D83A139CDABE00A98D25 /* UIGlossyButton.m */; };
+		4947D841139CDABE00A98D25 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D83C139CDABE00A98D25 /* UIView+LayerEffects.m */; };
+		4947D843139CDC1900A98D25 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4947D842139CDC1800A98D25 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +26,21 @@
 		4947D817139CDA2400A98D25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4947D819139CDA2400A98D25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4947D81B139CDA2400A98D25 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		4947D81F139CDA2400A98D25 /* UIGlossyButton-Info.plist */ = {isa = PBXFileReference; path = "UIGlossyButton-Info.plist"; sourceTree = "<group>"; };
+		4947D81F139CDA2400A98D25 /* UIGlossyButton-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UIGlossyButton-Info.plist"; sourceTree = "<group>"; };
 		4947D821139CDA2400A98D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4947D823139CDA2400A98D25 /* UIGlossyButton-Prefix.pch */ = {isa = PBXFileReference; path = "UIGlossyButton-Prefix.pch"; sourceTree = "<group>"; };
+		4947D823139CDA2400A98D25 /* UIGlossyButton-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGlossyButton-Prefix.pch"; sourceTree = "<group>"; };
 		4947D824139CDA2400A98D25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4947D826139CDA2400A98D25 /* UIGlossyButtonAppDelegate.h */ = {isa = PBXFileReference; path = UIGlossyButtonAppDelegate.h; sourceTree = "<group>"; };
+		4947D826139CDA2400A98D25 /* UIGlossyButtonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGlossyButtonAppDelegate.h; sourceTree = "<group>"; };
 		4947D827139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButtonAppDelegate.m; sourceTree = "<group>"; };
 		4947D82A139CDA2400A98D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		4947D82C139CDA2400A98D25 /* UIGlossyButtonViewController.h */ = {isa = PBXFileReference; path = UIGlossyButtonViewController.h; sourceTree = "<group>"; };
-		4947D82D139CDA2400A98D25 /* UIGlossyButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButtonViewController.m; sourceTree = "<group>"; };
-		4947D830139CDA2400A98D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UIGlossyButtonViewController.xib; sourceTree = "<group>"; };
+		4947D837139CDABE00A98D25 /* TestButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestButtonViewController.xib; sourceTree = "<group>"; };
+		4947D838139CDABE00A98D25 /* TestButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestButtonViewController.m; sourceTree = "<group>"; };
+		4947D839139CDABE00A98D25 /* TestButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestButtonViewController.h; sourceTree = "<group>"; };
+		4947D83A139CDABE00A98D25 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
+		4947D83B139CDABE00A98D25 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
+		4947D83C139CDABE00A98D25 /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
+		4947D83D139CDABE00A98D25 /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
+		4947D842139CDC1800A98D25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4947D843139CDC1900A98D25 /* QuartzCore.framework in Frameworks */,
 				4947D818139CDA2400A98D25 /* UIKit.framework in Frameworks */,
 				4947D81A139CDA2400A98D25 /* Foundation.framework in Frameworks */,
 				4947D81C139CDA2400A98D25 /* CoreGraphics.framework in Frameworks */,
@@ -52,6 +61,7 @@
 		4947D808139CDA2400A98D25 = {
 			isa = PBXGroup;
 			children = (
+				4947D842139CDC1800A98D25 /* QuartzCore.framework */,
 				4947D81D139CDA2400A98D25 /* UIGlossyButton */,
 				4947D816139CDA2400A98D25 /* Frameworks */,
 				4947D814139CDA2400A98D25 /* Products */,
@@ -79,12 +89,16 @@
 		4947D81D139CDA2400A98D25 /* UIGlossyButton */ = {
 			isa = PBXGroup;
 			children = (
+				4947D837139CDABE00A98D25 /* TestButtonViewController.xib */,
+				4947D838139CDABE00A98D25 /* TestButtonViewController.m */,
+				4947D839139CDABE00A98D25 /* TestButtonViewController.h */,
+				4947D83A139CDABE00A98D25 /* UIGlossyButton.m */,
+				4947D83B139CDABE00A98D25 /* UIGlossyButton.h */,
+				4947D83C139CDABE00A98D25 /* UIView+LayerEffects.m */,
+				4947D83D139CDABE00A98D25 /* UIView+LayerEffects.h */,
 				4947D826139CDA2400A98D25 /* UIGlossyButtonAppDelegate.h */,
 				4947D827139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m */,
 				4947D829139CDA2400A98D25 /* MainWindow.xib */,
-				4947D82C139CDA2400A98D25 /* UIGlossyButtonViewController.h */,
-				4947D82D139CDA2400A98D25 /* UIGlossyButtonViewController.m */,
-				4947D82F139CDA2400A98D25 /* UIGlossyButtonViewController.xib */,
 				4947D81E139CDA2400A98D25 /* Supporting Files */,
 			);
 			path = UIGlossyButton;
@@ -153,7 +167,7 @@
 			files = (
 				4947D822139CDA2400A98D25 /* InfoPlist.strings in Resources */,
 				4947D82B139CDA2400A98D25 /* MainWindow.xib in Resources */,
-				4947D831139CDA2400A98D25 /* UIGlossyButtonViewController.xib in Resources */,
+				4947D83E139CDABE00A98D25 /* TestButtonViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +180,9 @@
 			files = (
 				4947D825139CDA2400A98D25 /* main.m in Sources */,
 				4947D828139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m in Sources */,
-				4947D82E139CDA2400A98D25 /* UIGlossyButtonViewController.m in Sources */,
+				4947D83F139CDABE00A98D25 /* TestButtonViewController.m in Sources */,
+				4947D840139CDABE00A98D25 /* UIGlossyButton.m in Sources */,
+				4947D841139CDABE00A98D25 /* UIView+LayerEffects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,14 +203,6 @@
 				4947D82A139CDA2400A98D25 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		4947D82F139CDA2400A98D25 /* UIGlossyButtonViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4947D830139CDA2400A98D25 /* en */,
-			);
-			name = UIGlossyButtonViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

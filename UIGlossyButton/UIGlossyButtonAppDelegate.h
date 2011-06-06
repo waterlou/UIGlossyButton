@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class UIGlossyButtonViewController;
+@class TestButtonViewController;
 
 @interface UIGlossyButtonAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -16,6 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet UIGlossyButtonViewController *viewController;
+@property (nonatomic, retain) IBOutlet TestButtonViewController *viewController;
 
 @end
