@@ -1,0 +1,286 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4947D818139CDA2400A98D25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4947D817139CDA2400A98D25 /* UIKit.framework */; };
+		4947D81A139CDA2400A98D25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4947D819139CDA2400A98D25 /* Foundation.framework */; };
+		4947D81C139CDA2400A98D25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4947D81B139CDA2400A98D25 /* CoreGraphics.framework */; };
+		4947D822139CDA2400A98D25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4947D820139CDA2400A98D25 /* InfoPlist.strings */; };
+		4947D825139CDA2400A98D25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D824139CDA2400A98D25 /* main.m */; };
+		4947D828139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D827139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m */; };
+		4947D82B139CDA2400A98D25 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4947D829139CDA2400A98D25 /* MainWindow.xib */; };
+		4947D82E139CDA2400A98D25 /* UIGlossyButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D82D139CDA2400A98D25 /* UIGlossyButtonViewController.m */; };
+		4947D831139CDA2400A98D25 /* UIGlossyButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4947D82F139CDA2400A98D25 /* UIGlossyButtonViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4947D813139CDA2400A98D25 /* UIGlossyButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIGlossyButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4947D817139CDA2400A98D25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4947D819139CDA2400A98D25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4947D81B139CDA2400A98D25 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4947D81F139CDA2400A98D25 /* UIGlossyButton-Info.plist */ = {isa = PBXFileReference; path = "UIGlossyButton-Info.plist"; sourceTree = "<group>"; };
+		4947D821139CDA2400A98D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4947D823139CDA2400A98D25 /* UIGlossyButton-Prefix.pch */ = {isa = PBXFileReference; path = "UIGlossyButton-Prefix.pch"; sourceTree = "<group>"; };
+		4947D824139CDA2400A98D25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4947D826139CDA2400A98D25 /* UIGlossyButtonAppDelegate.h */ = {isa = PBXFileReference; path = UIGlossyButtonAppDelegate.h; sourceTree = "<group>"; };
+		4947D827139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButtonAppDelegate.m; sourceTree = "<group>"; };
+		4947D82A139CDA2400A98D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		4947D82C139CDA2400A98D25 /* UIGlossyButtonViewController.h */ = {isa = PBXFileReference; path = UIGlossyButtonViewController.h; sourceTree = "<group>"; };
+		4947D82D139CDA2400A98D25 /* UIGlossyButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButtonViewController.m; sourceTree = "<group>"; };
+		4947D830139CDA2400A98D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UIGlossyButtonViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4947D810139CDA2400A98D25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4947D818139CDA2400A98D25 /* UIKit.framework in Frameworks */,
+				4947D81A139CDA2400A98D25 /* Foundation.framework in Frameworks */,
+				4947D81C139CDA2400A98D25 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4947D808139CDA2400A98D25 = {
+			isa = PBXGroup;
+			children = (
+				4947D81D139CDA2400A98D25 /* UIGlossyButton */,
+				4947D816139CDA2400A98D25 /* Frameworks */,
+				4947D814139CDA2400A98D25 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4947D814139CDA2400A98D25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4947D813139CDA2400A98D25 /* UIGlossyButton.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4947D816139CDA2400A98D25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4947D817139CDA2400A98D25 /* UIKit.framework */,
+				4947D819139CDA2400A98D25 /* Foundation.framework */,
+				4947D81B139CDA2400A98D25 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4947D81D139CDA2400A98D25 /* UIGlossyButton */ = {
+			isa = PBXGroup;
+			children = (
+				4947D826139CDA2400A98D25 /* UIGlossyButtonAppDelegate.h */,
+				4947D827139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m */,
+				4947D829139CDA2400A98D25 /* MainWindow.xib */,
+				4947D82C139CDA2400A98D25 /* UIGlossyButtonViewController.h */,
+				4947D82D139CDA2400A98D25 /* UIGlossyButtonViewController.m */,
+				4947D82F139CDA2400A98D25 /* UIGlossyButtonViewController.xib */,
+				4947D81E139CDA2400A98D25 /* Supporting Files */,
+			);
+			path = UIGlossyButton;
+			sourceTree = "<group>";
+		};
+		4947D81E139CDA2400A98D25 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4947D81F139CDA2400A98D25 /* UIGlossyButton-Info.plist */,
+				4947D820139CDA2400A98D25 /* InfoPlist.strings */,
+				4947D823139CDA2400A98D25 /* UIGlossyButton-Prefix.pch */,
+				4947D824139CDA2400A98D25 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4947D812139CDA2400A98D25 /* UIGlossyButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4947D834139CDA2400A98D25 /* Build configuration list for PBXNativeTarget "UIGlossyButton" */;
+			buildPhases = (
+				4947D80F139CDA2400A98D25 /* Sources */,
+				4947D810139CDA2400A98D25 /* Frameworks */,
+				4947D811139CDA2400A98D25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIGlossyButton;
+			productName = UIGlossyButton;
+			productReference = 4947D813139CDA2400A98D25 /* UIGlossyButton.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4947D80A139CDA2400A98D25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "First Water Tech Ltd.";
+			};
+			buildConfigurationList = 4947D80D139CDA2400A98D25 /* Build configuration list for PBXProject "UIGlossyButton" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4947D808139CDA2400A98D25;
+			productRefGroup = 4947D814139CDA2400A98D25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4947D812139CDA2400A98D25 /* UIGlossyButton */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4947D811139CDA2400A98D25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4947D822139CDA2400A98D25 /* InfoPlist.strings in Resources */,
+				4947D82B139CDA2400A98D25 /* MainWindow.xib in Resources */,
+				4947D831139CDA2400A98D25 /* UIGlossyButtonViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4947D80F139CDA2400A98D25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4947D825139CDA2400A98D25 /* main.m in Sources */,
+				4947D828139CDA2400A98D25 /* UIGlossyButtonAppDelegate.m in Sources */,
+				4947D82E139CDA2400A98D25 /* UIGlossyButtonViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4947D820139CDA2400A98D25 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4947D821139CDA2400A98D25 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4947D829139CDA2400A98D25 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4947D82A139CDA2400A98D25 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		4947D82F139CDA2400A98D25 /* UIGlossyButtonViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4947D830139CDA2400A98D25 /* en */,
+			);
+			name = UIGlossyButtonViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4947D832139CDA2400A98D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4947D833139CDA2400A98D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		4947D835139CDA2400A98D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UIGlossyButton/UIGlossyButton-Prefix.pch";
+				INFOPLIST_FILE = "UIGlossyButton/UIGlossyButton-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4947D836139CDA2400A98D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UIGlossyButton/UIGlossyButton-Prefix.pch";
+				INFOPLIST_FILE = "UIGlossyButton/UIGlossyButton-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4947D80D139CDA2400A98D25 /* Build configuration list for PBXProject "UIGlossyButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4947D832139CDA2400A98D25 /* Debug */,
+				4947D833139CDA2400A98D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4947D834139CDA2400A98D25 /* Build configuration list for PBXNativeTarget "UIGlossyButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4947D835139CDA2400A98D25 /* Debug */,
+				4947D836139CDA2400A98D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4947D80A139CDA2400A98D25 /* Project object */;
+}
