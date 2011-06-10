@@ -7,4 +7,4 @@ UIGlossyButton
 - easy to add new effects
 - also create nice buttons that is not in iOS style
 
-![screenshot][https://github.com/waterlou/UIGlossyButton/raw/master/screenshot.png]
+![screenshot](https://github.com/waterlou/UIGlossyButton/raw/master/screenshot.png)
