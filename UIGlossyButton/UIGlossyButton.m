@@ -276,10 +276,10 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 			CGContextAddPath(context, path);
 			CGContextFillPath(context);				
 			
-			CGContextTranslateCTM(context, 0.0, -1.0);
+            CGContextTranslateCTM(context, 0.0, -1.0);
 			[color setFill];
 			CGContextAddPath(context, path);
-			CGContextFillPath(context);				
+			CGContextFillPath(context);
 			CGContextRestoreGState(context);
 		}
 			break;

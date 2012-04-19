@@ -8,3 +8,7 @@ UIGlossyButton
 - also create nice buttons that is not in iOS style
 
 ![screenshot](https://github.com/waterlou/UIGlossyButton/raw/master/screenshot.png)
+
+### License
+
+These specifications and CocoaPods are available under the [MIT license](http://www.opensource.org/licenses/mit-license.php).

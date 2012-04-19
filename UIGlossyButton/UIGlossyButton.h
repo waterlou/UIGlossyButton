@@ -27,7 +27,7 @@ typedef enum _UIGlossyButtonGradientType {
 	kUIGlossyButtonGradientTypeLinearGlossyStandard,		// iOS like glossy effect
 	kUIGlossyButtonGradientTypeLinearSmoothExtreme,	// Very bright to very dim
 	kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal,	// very bright to normal
-	kUIGlossyButtonGradientTypeSolid,				// plain solid
+	kUIGlossyButtonGradientTypeSolid,				// plain solid    
 } UIGlossyButtonGradientType;
 
 typedef enum _UIGlossyButtonStrokeType{

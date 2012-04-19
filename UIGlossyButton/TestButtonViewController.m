@@ -132,7 +132,23 @@
 		b.leftArrow = NO;
 		[b setNavigationButtonWithColor:[UIColor navigationBarButtonColor]];
 	}
+    
+	b = (UIGlossyButton*) [self.view viewWithTag: 1015];
+	b.tintColor = [UIColor doneButtonColor];
+	[b useWhiteLabel: YES];
+	b.innerBorderWidth = 0.0f;
+	b.buttonBorderWidth = 1.0f;
+	b.buttonCornerRadius = 12.0f;
+	[b setGradientType: kUIGlossyButtonGradientTypeLinearGlossyStandard];
+	[b setStrokeType: kUIGlossyButtonStrokeTypeInnerBevelDown];
 
+	b = (UIGlossyButton*) [self.view viewWithTag: 1016];
+	b.tintColor = [UIColor colorWithRed:0.9 green:0.4 blue:0.4 alpha:1.0];
+	[b useWhiteLabel: YES];
+	b.buttonCornerRadius = 28.0f;
+	[b setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
+	[b setStrokeType: kUIGlossyButtonStrokeTypeInnerBevelDown];
+    [b setExtraShadingType:kUIGlossyButtonExtraShadingTypeRounded];
 }
 
 - (void)viewDidUnload
