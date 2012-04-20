@@ -86,7 +86,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 @synthesize innerBorderWidth = _innerBorderWidth;
 @synthesize strokeType = _strokeType, extraShadingType = _extraShadingType;
 @synthesize backgroundOpacity = _backgroundOpacity;
-
+@synthesize buttonInsets = _buttonInsets;
 #pragma lifecycle
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -98,7 +98,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	_innerBorderWidth = 1.0;
 	_buttonBorderWidth = 1.0;
 	_backgroundOpacity = 1.0;
-    _buttonInset = UIEdgeInsetsZero;
+    _buttonInsets = UIEdgeInsetsZero;
 	[self setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
 }
 
@@ -180,7 +180,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
 	CGFloat radius = _buttonCornerRadius - inset;
 	if (radius<0.0) radius = 0.0;
-    CGRect rr = UIEdgeInsetsInsetRect(self.bounds, _buttonInset);
+    CGRect rr = UIEdgeInsetsInsetRect(self.bounds, _buttonInsets);
 	return [UIBezierPath bezierPathWithRoundedRect:CGRectInset(rr, inset, inset) cornerRadius:radius];
 }
 
@@ -427,7 +427,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 @synthesize leftArrow = _leftArrow;
 
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
-    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInset);
+    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInsets);
 	CGRect rr = CGRectInset(bounds, inset, inset);
 	CGFloat radius = _buttonCornerRadius - inset;
 	if (radius<0.0) radius = 0.0;
@@ -479,7 +479,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 }
 
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
-    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInset);
+    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInsets);
 	CGPoint center = CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0);
 	CGFloat outerRadius = MIN(bounds.size.width, bounds.size.height) / 2.0 - inset;
 	CGFloat innerRadius = outerRadius * innerRadiusRatio;

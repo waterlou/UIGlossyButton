@@ -69,7 +69,7 @@ typedef enum _UIGlossyButtonExtraShadingType {
 	
 	CGFloat _backgroundOpacity;
     
-    UIEdgeInsets _buttonInset;
+    UIEdgeInsets _buttonInsets;
 	
 	UIGlossyButtonStrokeType _strokeType;
 	UIGlossyButtonExtraShadingType _extraShadingType;
@@ -78,7 +78,7 @@ typedef enum _UIGlossyButtonExtraShadingType {
 @property (nonatomic, retain) UIColor *tintColor;
 @property (nonatomic, retain) UIColor *disabledColor;   // color when disabled, can be nil for lightgray color when disabled
 @property (nonatomic, assign) CGFloat buttonCornerRadius;	// outer button border
-@property (nonatomic, assign) UIEdgeInsets buttonInset;     // inset of the button face, default 0.0
+@property (nonatomic, assign) UIEdgeInsets buttonInsets;     // inset of the button face, default 0.0
 @property (nonatomic, retain) UIColor *borderColor;	// button border color, default nil = dark gray
 @property (nonatomic, retain) UIColor *disabledBorderColor;   // color when disabled, can be nil for lightgray color when disabled
 @property (nonatomic, assign) CGFloat buttonBorderWidth; //  outer button border width, default 1.0
