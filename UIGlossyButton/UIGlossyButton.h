@@ -25,9 +25,9 @@
 typedef enum _UIGlossyButtonGradientType {
 	kUIGlossyButtonGradientTypeLinearSmoothStandard = 0,	// general vertical linear gradient, normal to little dark
 	kUIGlossyButtonGradientTypeLinearGlossyStandard,		// iOS like glossy effect
-	kUIGlossyButtonGradientTypeLinearSmoothExtreme,	// Very bright to very dim
+	kUIGlossyButtonGradientTypeLinearSmoothExtreme,         // Very bright to very dim
 	kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal,	// very bright to normal
-	kUIGlossyButtonGradientTypeSolid,				// plain solid    
+	kUIGlossyButtonGradientTypeSolid,                       // plain solid  
 } UIGlossyButtonGradientType;
 
 typedef enum _UIGlossyButtonStrokeType{
@@ -35,6 +35,7 @@ typedef enum _UIGlossyButtonStrokeType{
 	kUIGlossyButtonStrokeTypeSolid,	// simple solid color
 	kUIGlossyButtonStrokeTypeInnerBevelDown, // draw bevel down effect (naivagation bar button)
 	kUIGlossyButtonStrokeTypeGradientFrame,	// frame a 1 pixel b/w gradient (default delete button)	
+    kUIGlossyButtonStrokeTypeBevelUp,       // stroke bevel using button color
 } UIGlossyButtonStrokeType;
 
 typedef enum _UIGlossyButtonExtraShadingType {
@@ -66,6 +67,8 @@ typedef enum _UIGlossyButtonExtraShadingType {
     CGFloat _buttonCornerRadius;
     CGFloat _innerBorderWidth;
 	CGFloat _buttonBorderWidth;
+    
+    BOOL    _invertGraidentOnSelected;
 	
 	CGFloat _backgroundOpacity;
     
@@ -85,7 +88,7 @@ typedef enum _UIGlossyButtonExtraShadingType {
 @property (nonatomic, assign) CGFloat innerBorderWidth;	 // inner stroke that fill same color as the tint color, default = 1.0
 @property (nonatomic, assign) UIGlossyButtonStrokeType strokeType;	// outer button border
 @property (nonatomic, assign) UIGlossyButtonExtraShadingType extraShadingType;	// extra shading effect other than gradient
-
+@property (nonatomic, assign) BOOL invertGraidentOnSelected;    // invert the gradient when button down for inner bevel effect, default = NO
 @property (nonatomic, assign) CGFloat backgroundOpacity; // default 1.0, set smaller to draw button in transparent
 
 /* path for the button, default is a round corner rectangle, we can subclass and customize it */

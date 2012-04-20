@@ -73,7 +73,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 // main draw routine, not including stroke the outer path
 - (void) drawTintColorButton : (CGContextRef)context tintColor : (UIColor *) tintColor isSelected : (BOOL) isSelected;
-- (void) strokeButton : (CGContextRef)context color : (UIColor *)color;
+- (void) strokeButton : (CGContextRef)context color : (UIColor *)color isSelected : (BOOL) isSelected;
 
 @end
 
@@ -87,6 +87,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 @synthesize strokeType = _strokeType, extraShadingType = _extraShadingType;
 @synthesize backgroundOpacity = _backgroundOpacity;
 @synthesize buttonInsets = _buttonInsets;
+@synthesize invertGraidentOnSelected = _invertGraidentOnSelected;
 #pragma lifecycle
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -124,9 +125,9 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
     [super dealloc];
 }
 
-#pragma -
+#pragma mark - 
 
-
+/* graident that will be used to fill on top of the button for 3D effect */
 - (void) setGradientType : (UIGlossyButtonGradientType) type {
 	switch (type) {
 		case kUIGlossyButtonGradientTypeLinearSmoothStandard:
@@ -147,10 +148,11 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 			break;
 		case kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal:
 		{
-			static const CGFloat g0[] = {1.0, 1.0, 0.5, 1.0};
+			static const CGFloat g0[] = {0.9, 1.0, 0.5, 1.0, 0.5, 1.0};
+			static const CGFloat l0[] = {0.0, 0.7, 1.0};
 			background_gradient = g0;
-			locations = nil;
-			numberOfColorsInGradient = 2;
+			locations = l0;
+			numberOfColorsInGradient = 3;
 		}
 			break;
 		case kUIGlossyButtonGradientTypeLinearGlossyStandard:
@@ -201,6 +203,8 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	}
 	
 	CGContextRef ref = UIGraphicsGetCurrentContext();
+    
+    BOOL isSelected = [self isHighlighted];
 	CGContextSaveGState(ref);
 	if (_buttonBorderWidth>0.0) {
 		UIColor *color;
@@ -210,9 +214,9 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 			if (color==nil) color = _borderColor;
 		}
 		if (color == nil) color = [UIColor darkGrayColor];
-		[self strokeButton : ref color : color];
+		[self strokeButton : ref color : color isSelected: isSelected];
 	}
-  	[self drawTintColorButton : ref tintColor : color isSelected: [self isHighlighted]];
+  	[self drawTintColorButton : ref tintColor : color isSelected: isSelected];
 	CGContextRestoreGState(ref);
 	
 	if (drawOnImage) {
@@ -238,7 +242,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 #pragma -
 
-- (void) strokeButton : (CGContextRef)context color : (UIColor *)color {
+- (void) strokeButton : (CGContextRef)context color : (UIColor *)color isSelected : (BOOL) isSelected {
 	switch (_strokeType) {
         case kUIGlossyButtonStrokeTypeNone:
             break;
@@ -290,6 +294,37 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 			CGContextFillPath(context);
 
 			CGContextRestoreGState(context);
+		}
+			break;
+		case kUIGlossyButtonStrokeTypeBevelUp:
+		{
+			CGRect rect = self.bounds;
+			CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+			const CGFloat *strokeComponents;
+            const CGFloat *l0;
+            if (_invertGraidentOnSelected && isSelected) {
+                const CGFloat s[] = {0.2, 1, 0.5, 1, 0.6, 1};
+                const CGFloat l[] = {0.0, 0.1, 1.0};
+                strokeComponents = s; l0 = l;
+            }
+            else {
+                const CGFloat s[] = {0.9, 1, 0.5, 1, 0.2, 1};
+                const CGFloat l[] = {0.0, 0.1, 1.0};
+                strokeComponents = s; l0 = l;
+            }
+			
+			CGContextAddPath(context, [self pathForButton : 0.0f].CGPath);
+			CGContextClip(context);
+			
+			CGGradientRef strokeGradient = CGGradientCreateWithColorComponents(colorSpace, strokeComponents, l0, 3);	
+            CGContextDrawLinearGradient(context, strokeGradient, CGPointMake(0, CGRectGetMinY(rect)), CGPointMake(0,CGRectGetMaxY(rect)), 0);
+			CGGradientRelease(strokeGradient);
+			CGColorSpaceRelease(colorSpace);
+
+            [color set];
+            UIRectFillUsingBlendMode(rect, kCGBlendModeOverlay);
+
+			CGContextFillPath(context);				
 		}
 			break;
 		default:
@@ -362,7 +397,12 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	CGContextClip(context);
 	
 	CGGradientRef fillGradient = CGGradientCreateWithColorComponents(colorSpace, background_gradient, locations, numberOfColorsInGradient);	
-	CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, CGRectGetMinY(fillRect)), CGPointMake(0,CGRectGetMaxY(fillRect)), 0);
+    if (_invertGraidentOnSelected && isSelected) {
+        CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, CGRectGetMaxY(fillRect)), CGPointMake(0,CGRectGetMinY(fillRect)), 0);    
+    }
+    else {
+        CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, CGRectGetMinY(fillRect)), CGPointMake(0,CGRectGetMaxY(fillRect)), 0);
+    }
 	CGGradientRelease(fillGradient);
 	
 	if (_extraShadingType != kUIGlossyButtonExtraShadingTypeNone) {

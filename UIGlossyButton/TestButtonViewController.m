@@ -54,13 +54,34 @@
 	b = (UIGlossyButton*) [self.view viewWithTag: 1003];
 	[b setNavigationButtonWithColor:[UIColor doneButtonColor]];
 
-	// non iPhone-like but nice buttons
+	// All non iPhone-like but nice buttons
 	b = (UIGlossyButton*) [self.view viewWithTag: 1004];
 	[b useWhiteLabel: YES]; b.tintColor = [UIColor darkGrayColor];
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
 
+    b = (UIGlossyButton*) [self.view viewWithTag: 1017];
+	[b useWhiteLabel: YES]; b.tintColor = [UIColor darkGrayColor];
+	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
+    b.invertGraidentOnSelected = YES;
+
+    b = (UIGlossyButton*) [self.view viewWithTag: 1018];
+	[b useWhiteLabel: YES]; b.tintColor = [UIColor purpleColor];
+	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
+    [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothExtreme];
+
+    b = (UIGlossyButton*) [self.view viewWithTag: 1019];
+	[b useWhiteLabel: YES]; b.tintColor = [UIColor brownColor];
+	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
+    [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal];
+
+    b = (UIGlossyButton*) [self.view viewWithTag: 1020];
+	[b useWhiteLabel: YES];
+    b.buttonCornerRadius = 2.0; b.buttonBorderWidth = 1.0f;
+	[b setStrokeType: kUIGlossyButtonStrokeTypeBevelUp];
+    b.tintColor = b.borderColor = [UIColor colorWithRed:70.0f/255.0f green:105.0f/255.0f blue:192.0f/255.0f alpha:1.0f];
+    
 	b = (UIGlossyButton*) [self.view viewWithTag: 1005];
-	[b useWhiteLabel: NO]; b.tintColor = [UIColor whiteColor];
+	[b useWhiteLabel: YES]; b.tintColor = [UIColor whiteColor];
 	b.backgroundOpacity = 0.5;
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
 	
@@ -72,7 +93,7 @@
 	b.enabled = NO;
 	[b setNavigationButtonWithColor:[UIColor darkGrayColor]];
 	
-	// different extra shading
+	// different extra shading (square one in the samples)
 	b = (UIGlossyButton*) [self.view viewWithTag: 1008];
 	b.tintColor = [UIColor greenColor];
 	b.innerBorderWidth = 5.0f;
@@ -134,6 +155,8 @@
 	}
     
     /* for button using kUIGlossyButtonStrokeTypeInnerBevelDown, buttonBorderWidth better <= 4.0f */
+    
+    /* SMS Send Button */
 	b = (UIGlossyButton*) [self.view viewWithTag: 1015];
 	b.tintColor = [UIColor doneButtonColor];
 	[b useWhiteLabel: YES];
@@ -143,6 +166,7 @@
 	[b setGradientType: kUIGlossyButtonGradientTypeLinearGlossyStandard];
 	[b setStrokeType: kUIGlossyButtonStrokeTypeInnerBevelDown];
 
+    /* big circle button */
 	b = (UIGlossyButton*) [self.view viewWithTag: 1016];
 	b.tintColor = [UIColor colorWithRed:0.9 green:0.4 blue:0.4 alpha:1.0];
 	[b useWhiteLabel: YES];
