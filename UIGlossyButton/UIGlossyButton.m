@@ -98,6 +98,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	_innerBorderWidth = 1.0;
 	_buttonBorderWidth = 1.0;
 	_backgroundOpacity = 1.0;
+    _buttonInset = UIEdgeInsetsZero;
 	[self setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
 }
 
@@ -179,7 +180,8 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
 	CGFloat radius = _buttonCornerRadius - inset;
 	if (radius<0.0) radius = 0.0;
-	return [UIBezierPath bezierPathWithRoundedRect:CGRectInset(self.bounds, inset, inset) cornerRadius:radius];
+    CGRect rr = UIEdgeInsetsInsetRect(self.bounds, _buttonInset);
+	return [UIBezierPath bezierPathWithRoundedRect:CGRectInset(rr, inset, inset) cornerRadius:radius];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -425,10 +427,11 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 @synthesize leftArrow = _leftArrow;
 
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
-	CGRect rr = CGRectInset(self.bounds, inset, inset);
+    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInset);
+	CGRect rr = CGRectInset(bounds, inset, inset);
 	CGFloat radius = _buttonCornerRadius - inset;
 	if (radius<0.0) radius = 0.0;
-	CGFloat arrowWidth = round(self.bounds.size.height * 0.30);
+	CGFloat arrowWidth = round(bounds.size.height * 0.30);
 	CGFloat radiusOffset = 0.29289321 * radius;
     CGFloat extraHeadInset = 0.01118742 * inset;
 	if (_leftArrow) {
@@ -476,8 +479,9 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 }
 
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
-	CGPoint center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
-	CGFloat outerRadius = MIN(self.bounds.size.width, self.bounds.size.height) / 2.0 - inset;
+    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInset);
+	CGPoint center = CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0);
+	CGFloat outerRadius = MIN(bounds.size.width, bounds.size.height) / 2.0 - inset;
 	CGFloat innerRadius = outerRadius * innerRadiusRatio;
 	CGFloat angle = M_PI * 2.0 / (numberOfEdges * 2);
 	UIBezierPath *path = [UIBezierPath bezierPath];
