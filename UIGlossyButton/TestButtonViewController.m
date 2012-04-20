@@ -121,7 +121,7 @@
 		[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeZero blurRadius: 2];
 	}
 	
-	// left and right navigation bar
+	// left and right navigation bar (suggested 32px height to match OS's one)
 	{
 		UIGNavigationButton *b;
 		b = (UIGNavigationButton*) [self.view viewWithTag: 1011];
@@ -133,6 +133,7 @@
 		[b setNavigationButtonWithColor:[UIColor navigationBarButtonColor]];
 	}
     
+    /* for button using kUIGlossyButtonStrokeTypeInnerBevelDown, buttonBorderWidth better <= 4.0f */
 	b = (UIGlossyButton*) [self.view viewWithTag: 1015];
 	b.tintColor = [UIColor doneButtonColor];
 	[b useWhiteLabel: YES];
@@ -145,10 +146,13 @@
 	b = (UIGlossyButton*) [self.view viewWithTag: 1016];
 	b.tintColor = [UIColor colorWithRed:0.9 green:0.4 blue:0.4 alpha:1.0];
 	[b useWhiteLabel: YES];
-	b.buttonCornerRadius = 28.0f;
+	b.buttonBorderWidth = 2.0f;
+	b.buttonCornerRadius = 40.0f;
 	[b setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
 	[b setStrokeType: kUIGlossyButtonStrokeTypeInnerBevelDown];
     [b setExtraShadingType:kUIGlossyButtonExtraShadingTypeRounded];
+    
+
 }
 
 - (void)viewDidUnload

@@ -238,9 +238,11 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 - (void) strokeButton : (CGContextRef)context color : (UIColor *)color {
 	switch (_strokeType) {
+        case kUIGlossyButtonStrokeTypeNone:
+            break;
 		case kUIGlossyButtonStrokeTypeSolid:
 			// simple solid border
-			CGContextAddPath(context, [self pathForButton : 0.0].CGPath);
+			CGContextAddPath(context, [self pathForButton : 0.0f].CGPath);
 			[color setFill];
 			CGContextFillPath(context);	
 			break;
@@ -253,7 +255,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 				0.9, 1, 0.1, 1
 			};
 			
-			CGContextAddPath(context, [self pathForButton : 0].CGPath);
+			CGContextAddPath(context, [self pathForButton : 0.0f].CGPath);
 			CGContextClip(context);
 			
 			CGGradientRef strokeGradient = CGGradientCreateWithColorComponents(colorSpace, strokeComponents, NULL, 2);	
@@ -261,7 +263,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 			CGGradientRelease(strokeGradient);
 			CGColorSpaceRelease(colorSpace);
 			
-			CGContextAddPath(context, [self pathForButton : 1.0].CGPath);
+			CGContextAddPath(context, [self pathForButton : 1.0f].CGPath);
 			[color setFill];
 			CGContextFillPath(context);				
 		}
@@ -269,17 +271,22 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 		case kUIGlossyButtonStrokeTypeInnerBevelDown:
 		{
 			CGContextSaveGState(context);
-			CGPathRef path = [self pathForButton: 0].CGPath;
+			CGPathRef path = [self pathForButton: 0.0f].CGPath;
 			CGContextAddPath(context, path);
 			CGContextClip(context);
-			[[UIColor colorWithWhite:0.9 alpha:1.0] setFill];
+			[[UIColor colorWithWhite:0.9f alpha:1.0f] setFill];
 			CGContextAddPath(context, path);
 			CGContextFillPath(context);				
-			
-            CGContextTranslateCTM(context, 0.0, -1.0);
+            
+            CGFloat highlightWidth = _buttonBorderWidth / 4.0f;
+            if (highlightWidth<0.5f) highlightWidth = 0.5f;
+            else if (highlightWidth>2.0f) highlightWidth = 2.0f;
+			CGPathRef innerPath = [self pathForButton: highlightWidth].CGPath;
+            CGContextTranslateCTM(context, 0.0f, -highlightWidth);
 			[color setFill];
-			CGContextAddPath(context, path);
+			CGContextAddPath(context, innerPath);
 			CGContextFillPath(context);
+
 			CGContextRestoreGState(context);
 		}
 			break;
@@ -421,23 +428,24 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	CGRect rr = CGRectInset(self.bounds, inset, inset);
 	CGFloat radius = _buttonCornerRadius - inset;
 	if (radius<0.0) radius = 0.0;
-	CGFloat arrowWidth = round(rr.size.height * 0.30);
+	CGFloat arrowWidth = round(self.bounds.size.height * 0.30);
 	CGFloat radiusOffset = 0.29289321 * radius;
+    CGFloat extraHeadInset = 0.01118742 * inset;
 	if (_leftArrow) {
-		CGRect rr1 = CGRectMake(arrowWidth+rr.origin.x, rr.origin.y, rr.size.width-arrowWidth, rr.size.height);
+		CGRect rr1 = CGRectMake(arrowWidth+rr.origin.x+extraHeadInset, rr.origin.y, rr.size.width-arrowWidth-extraHeadInset, rr.size.height);
 		UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rr1 cornerRadius:radius];
-		[path moveToPoint: CGPointMake(rr.origin.x, rr.origin.y + rr.size.height / 2.0)];
-		[path addLineToPoint:CGPointMake(rr.origin.x+arrowWidth+radiusOffset, rr.origin.y+radiusOffset)];
-		[path addLineToPoint:CGPointMake(rr.origin.x+arrowWidth+radiusOffset, rr.origin.y+rr.size.height-radiusOffset)];
+		[path moveToPoint: CGPointMake(rr.origin.x+extraHeadInset, rr.origin.y + rr.size.height / 2.0)];
+		[path addLineToPoint:CGPointMake(rr.origin.x+arrowWidth+radiusOffset+extraHeadInset, rr.origin.y+radiusOffset)];
+		[path addLineToPoint:CGPointMake(rr.origin.x+arrowWidth+radiusOffset+extraHeadInset, rr.origin.y+rr.size.height-radiusOffset)];
 		[path closePath];
 		return path;
 	}
 	else {
-		CGRect rr1 = CGRectMake(rr.origin.x, rr.origin.y, rr.size.width-arrowWidth, rr.size.height);
+		CGRect rr1 = CGRectMake(rr.origin.x, rr.origin.y, rr.size.width-arrowWidth-extraHeadInset, rr.size.height);
 		UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rr1 cornerRadius:radius];
-		[path moveToPoint: CGPointMake(rr.origin.x + rr.size.width, rr.origin.y + rr.size.height / 2.0)];
-		[path addLineToPoint:CGPointMake(rr.origin.x+ rr.size.width - arrowWidth - radiusOffset, rr.origin.y+rr.size.height-radiusOffset)];
-		[path addLineToPoint:CGPointMake(rr.origin.x+ rr.size.width - arrowWidth - radiusOffset, rr.origin.y+radiusOffset)];
+		[path moveToPoint: CGPointMake(rr.origin.x + rr.size.width - extraHeadInset, rr.origin.y + rr.size.height / 2.0)];
+		[path addLineToPoint:CGPointMake(rr.origin.x+ rr.size.width - arrowWidth - radiusOffset - extraHeadInset, rr.origin.y+rr.size.height-radiusOffset)];
+		[path addLineToPoint:CGPointMake(rr.origin.x+ rr.size.width - arrowWidth - radiusOffset - extraHeadInset, rr.origin.y+radiusOffset)];
 		[path closePath];
 		return path;
 	}

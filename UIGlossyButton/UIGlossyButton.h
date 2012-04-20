@@ -31,7 +31,8 @@ typedef enum _UIGlossyButtonGradientType {
 } UIGlossyButtonGradientType;
 
 typedef enum _UIGlossyButtonStrokeType{
-	kUIGlossyButtonStrokeTypeSolid = 0,	// simple solid color
+    kUIGlossyButtonStrokeTypeNone = 0,
+	kUIGlossyButtonStrokeTypeSolid,	// simple solid color
 	kUIGlossyButtonStrokeTypeInnerBevelDown, // draw bevel down effect (naivagation bar button)
 	kUIGlossyButtonStrokeTypeGradientFrame,	// frame a 1 pixel b/w gradient (default delete button)	
 } UIGlossyButtonStrokeType;
