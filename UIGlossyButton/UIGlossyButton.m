@@ -101,6 +101,8 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	_backgroundOpacity = 1.0;
     _buttonInsets = UIEdgeInsetsZero;
 	[self setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
+    [self addObserver:self forKeyPath:@"highlighted" options:0 context:nil];
+    [self addObserver:self forKeyPath:@"enabled" options:0 context:nil];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
@@ -118,6 +120,9 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 }
 
 -(void) dealloc {
+    [self removeObserver:self forKeyPath:@"highlighted"];
+    [self removeObserver:self forKeyPath:@"enabled"];
+     
     self.tintColor = nil;
     self.disabledColor = nil;
     self.borderColor = nil;
@@ -228,17 +233,16 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
     [super drawRect: rect];
 }
 
-#pragma override so button will redraw itself when status changed
 
-- (void)setHighlighted:(BOOL)highlighted {
-    [super setHighlighted:highlighted];
-    [self setNeedsDisplay];
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"highlighted"] || [keyPath isEqualToString:@"enabled"]) {
+        [self setNeedsDisplay];
+    }
 }
 
-- (void) setEnabled:(BOOL)enabled {
-	[super setEnabled: enabled];
-	[self setNeedsDisplay];
-}
 
 #pragma -
 
