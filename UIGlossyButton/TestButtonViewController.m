@@ -41,7 +41,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	
+	    
 	// stand action sheet button
 	UIGlossyButton *b;
 	b = (UIGlossyButton*) [self.view viewWithTag: 1001];
