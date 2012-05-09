@@ -54,11 +54,11 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 @implementation UIColor(UIGlossyButton)
 
 + (UIColor*) doneButtonColor {
-	return [UIColor colorWithRed:34/255.0 green:96/255.0 blue:221/255.0 alpha:1.0f];	// DONE
+	return [UIColor colorWithRed:34.0f/255.0f green:96.0f/255.0f blue:221.0f/255.0f alpha:1.0f];	// DONE
 }
 
 + (UIColor*) navigationBarButtonColor {
-	return [UIColor colorWithRed:72/255.0 green:106/255.0 blue:154/255.0 alpha:1.0f];	
+	return [UIColor colorWithRed:72.0f/255.0f green:106.0f/255.0f blue:154.0f/255.0f alpha:1.0f];	
 }
 
 @end
@@ -88,11 +88,10 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 @synthesize backgroundOpacity = _backgroundOpacity;
 @synthesize buttonInsets = _buttonInsets;
 @synthesize invertGraidentOnSelected = _invertGraidentOnSelected;
+
+
 #pragma lifecycle
 
-- (CGSize)sizeThatFits:(CGSize)size {
-	return size;
-}
 
 - (void) setupSelf {
     _buttonCornerRadius = 4.0f;
@@ -101,8 +100,6 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	_backgroundOpacity = 1.0;
     _buttonInsets = UIEdgeInsetsZero;
 	[self setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
-    [self addObserver:self forKeyPath:@"highlighted" options:0 context:nil];
-    [self addObserver:self forKeyPath:@"enabled" options:0 context:nil];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
@@ -119,15 +116,26 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
     return self;
 }
 
+#if !__has_feature(objc_arc)
 -(void) dealloc {
-    [self removeObserver:self forKeyPath:@"highlighted"];
-    [self removeObserver:self forKeyPath:@"enabled"];
-     
     self.tintColor = nil;
     self.disabledColor = nil;
     self.borderColor = nil;
 	self.disabledColor = nil;
     [super dealloc];
+}
+#endif
+
+#pragma mark Override setter to redraw button when status changed
+
+- (void) setHighlighted:(BOOL)highlighted {
+    [super setHighlighted: highlighted];
+    [self setNeedsDisplay];
+}
+
+- (void) setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    [self setNeedsDisplay];
 }
 
 #pragma mark - 
@@ -231,16 +239,6 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	}
 	
     [super drawRect: rect];
-}
-
-
-#pragma mark KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"highlighted"] || [keyPath isEqualToString:@"enabled"]) {
-        [self setNeedsDisplay];
-    }
 }
 
 
