@@ -261,21 +261,28 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 		{
 			CGRect rect = self.bounds;
 			CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-			CGFloat strokeComponents[4] = {    
-				0.9, 1, 0.1, 1
+			CGFloat strokeComponents[] = {    
+				0.25f, 1.0f, 1.0f, 1.0f
 			};
 			
-			CGContextAddPath(context, [self pathForButton : 0.0f].CGPath);
-			CGContextClip(context);
+            UIBezierPath *outerPath = [self pathForButton : 0.0f]; 
+			CGContextAddPath(context, outerPath.CGPath);
+			[color setFill];
+			CGContextFillPath(context);				
+                        
+            // stroke the gradient in 1 pixels using overlay so that still keep the stroke color
+			CGContextSaveGState(context);
+            CGContextAddPath(context, outerPath.CGPath);
+            CGContextAddPath(context, [self pathForButton : 1.0f].CGPath);
+			CGContextEOClip(context);
+            CGContextSetBlendMode(context, kCGBlendModeOverlay);
 			
 			CGGradientRef strokeGradient = CGGradientCreateWithColorComponents(colorSpace, strokeComponents, NULL, 2);	
 			CGContextDrawLinearGradient(context, strokeGradient, CGPointMake(0, CGRectGetMinY(rect)), CGPointMake(0,CGRectGetMaxY(rect)), 0);
 			CGGradientRelease(strokeGradient);
 			CGColorSpaceRelease(colorSpace);
-			
-			CGContextAddPath(context, [self pathForButton : 1.0f].CGPath);
-			[color setFill];
-			CGContextFillPath(context);				
+            
+			CGContextRestoreGState(context);
 		}
 			break;
 		case kUIGlossyButtonStrokeTypeInnerBevelDown:
@@ -442,7 +449,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	self.buttonCornerRadius = 8.0f;
 	self.strokeType = kUIGlossyButtonStrokeTypeGradientFrame;
 	self.buttonBorderWidth = 3.0;
-	self.borderColor = [UIColor darkGrayColor];
+	self.borderColor = [UIColor colorWithWhite:0.2f alpha:0.8f];
 	[self setNeedsDisplay];
 }
 
