@@ -9,16 +9,8 @@
 
 #import "UIGlossyButton.h"
 
-static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
-    if ([[UIView class] instancesRespondToSelector:@selector(contentScaleFactor)]) {
-		UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-	}
-	else {
-		UIGraphicsBeginImageContext(size);
-	}
-}
-
-
+static void *enabledObserverContext = &enabledObserverContext;
+static void *highlightedObserverContext = &highlightedObserverContext;
 
 @implementation UIButton(UIGlossyButton)
 
@@ -59,7 +51,12 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 #pragma =================================================
 
 
-@interface UIGlossyButton()
+@interface UIGlossyButton() {
+	// data to create gradient of the button
+	const CGFloat *_backgroundGradient;
+	const CGFloat *_locations;
+	NSInteger _numberOfColorsInGradient;
+}
 
 // main draw routine, not including stroke the outer path
 - (void) drawTintColorButton : (CGContextRef)context tintColor : (UIColor *) tintColor isSelected : (BOOL) isSelected;
@@ -69,40 +66,36 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 @implementation UIGlossyButton
 
-@synthesize tintColor = _tintColor, disabledColor = _disabledColor;
-@synthesize buttonCornerRadius = _buttonCornerRadius;
-@synthesize borderColor = _borderColor, disabledBorderColor = _disabledBorderColor;
-@synthesize buttonBorderWidth = _buttonBorderWidth;
-@synthesize innerBorderWidth = _innerBorderWidth;
-@synthesize strokeType = _strokeType, extraShadingType = _extraShadingType;
-@synthesize backgroundOpacity = _backgroundOpacity;
-@synthesize buttonInsets = _buttonInsets;
-@synthesize invertGraidentOnSelected = _invertGraidentOnSelected;
-
+@synthesize tintColor = _tintColor;
 
 #pragma lifecycle
 
++ (void) initialize
+{
+    id appearance = [[self class] appearance];
+    [appearance setButtonCornerRadius: 4.0f];
+    [appearance setInnerBorderWidth: 1.0f];
+    [appearance setButtonBorderWidth: 1.0f];
+    [appearance setBackgroundOpacity: 1.0f];
+    [appearance setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
+}
 
 - (void) setupSelf {
-    _buttonCornerRadius = 4.0f;
-	_innerBorderWidth = 1.0;
-	_buttonBorderWidth = 1.0;
-	_backgroundOpacity = 1.0;
-    _buttonInsets = UIEdgeInsetsZero;
-	[self setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
-    [self addObserver:self forKeyPath:@"highlighted" options:0 context:nil];
-    [self addObserver:self forKeyPath:@"enabled" options:0 context:nil];
+    [self addObserver:self forKeyPath:@"highlighted" options:0 context:highlightedObserverContext];
+    [self addObserver:self forKeyPath:@"enabled" options:0 context:enabledObserverContext];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
-    if ((self = [super initWithCoder:aDecoder])) {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
         [self setupSelf];
     }
     return self;    
 }
 
 - (id) initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
+    self = [super initWithFrame:frame];
+    if (self) {
         [self setupSelf];        
     }
     return self;
@@ -111,14 +104,6 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 -(void) dealloc {
     [self removeObserver:self forKeyPath:@"highlighted"];
     [self removeObserver:self forKeyPath:@"enabled"];
-    
-#if !__has_feature(objc_arc)
-    self.tintColor = nil;
-    self.disabledColor = nil;
-    self.borderColor = nil;
-	self.disabledColor = nil;
-    [super dealloc];
-#endif
 }
 
 #pragma mark - 
@@ -129,44 +114,44 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 		case kUIGlossyButtonGradientTypeLinearSmoothStandard:
 		{
 			static const CGFloat g0[] = {0.5, 1.0, 0.35, 1.0};
-			background_gradient = g0;
-			locations = nil;
-			numberOfColorsInGradient = 2;
+			_backgroundGradient = g0;
+			_locations = nil;
+			_numberOfColorsInGradient = 2;
 		}
 			break;
 		case kUIGlossyButtonGradientTypeLinearSmoothExtreme:
 		{
 			static const CGFloat g0[] = {0.8, 1.0, 0.2, 1.0};
-			background_gradient = g0;
-			locations = nil;
-			numberOfColorsInGradient = 2;
+			_backgroundGradient = g0;
+			_locations = nil;
+			_numberOfColorsInGradient = 2;
 		}
 			break;
 		case kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal:
 		{
 			static const CGFloat g0[] = {0.9, 1.0, 0.5, 1.0, 0.5, 1.0};
 			static const CGFloat l0[] = {0.0, 0.7, 1.0};
-			background_gradient = g0;
-			locations = l0;
-			numberOfColorsInGradient = 3;
+			_backgroundGradient = g0;
+			_locations = l0;
+			_numberOfColorsInGradient = 3;
 		}
 			break;
 		case kUIGlossyButtonGradientTypeLinearGlossyStandard:
 		{
 			static const CGFloat g0[] = {0.7, 1.0, 0.6, 1.0, 0.5, 1.0, 0.45, 1.0};
 			static const CGFloat l0[] = {0.0, 0.47, 0.53, 1.0};
-			background_gradient = g0;
-			locations = l0;
-			numberOfColorsInGradient = 4;
+			_backgroundGradient = g0;
+			_locations = l0;
+			_numberOfColorsInGradient = 4;
 		}
 			break;
 		case kUIGlossyButtonGradientTypeSolid:
 		{
 			// simplify the code, we create a gradient with one color
 			static const CGFloat g0[] = {0.5, 1.0, 0.5, 1.0};
-			background_gradient = g0;
-			locations = nil;
-			numberOfColorsInGradient = 2;
+			_backgroundGradient = g0;
+			_locations = nil;
+			_numberOfColorsInGradient = 2;
 		}
 			break;
 			
@@ -195,7 +180,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	BOOL drawOnImage = _backgroundOpacity<1.0;
 	
 	if (drawOnImage) {
-		RetinaAwareUIGraphicsBeginImageContext(self.bounds.size);		
+		UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
 	}
 	
 	CGContextRef ref = UIGraphicsGetCurrentContext();
@@ -228,8 +213,11 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"highlighted"] || [keyPath isEqualToString:@"enabled"]) {
+    if (context==enabledObserverContext || context==highlightedObserverContext) {
         [self setNeedsDisplay];
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -397,7 +385,7 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 	CGContextAddPath(context, [self pathForButton : _buttonBorderWidth + _innerBorderWidth].CGPath);
 	CGContextClip(context);
 	
-	CGGradientRef fillGradient = CGGradientCreateWithColorComponents(colorSpace, background_gradient, locations, numberOfColorsInGradient);	
+	CGGradientRef fillGradient = CGGradientCreateWithColorComponents(colorSpace, _backgroundGradient, _locations, _numberOfColorsInGradient);	
     if (_invertGraidentOnSelected && isSelected) {
         CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, CGRectGetMaxY(fillRect)), CGPointMake(0,CGRectGetMinY(fillRect)), 0);    
     }
@@ -465,12 +453,10 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 @implementation UIGNavigationButton
 
-@synthesize leftArrow = _leftArrow;
-
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
-    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInsets);
+    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, self.buttonInsets);
 	CGRect rr = CGRectInset(bounds, inset, inset);
-	CGFloat radius = _buttonCornerRadius - inset;
+	CGFloat radius = self.buttonCornerRadius - inset;
 	if (radius<0.0) radius = 0.0;
 	CGFloat arrowWidth = round(bounds.size.height * 0.30);
 	CGFloat radiusOffset = 0.29289321 * radius;
@@ -510,23 +496,20 @@ static void RetinaAwareUIGraphicsBeginImageContext(CGSize size) {
 
 @implementation UIGBadgeButton
 
-@synthesize numberOfEdges;
-@synthesize innerRadiusRatio;
-
 - (void) setupSelf {
 	[super setupSelf];
-	numberOfEdges = 24;
-	innerRadiusRatio = 0.75;
+	_numberOfEdges = 24;
+	_innerRadiusRatio = 0.75;
 }
 
 - (UIBezierPath *) pathForButton : (CGFloat) inset {
-    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, _buttonInsets);
+    CGRect bounds = UIEdgeInsetsInsetRect(self.bounds, self.buttonInsets);
 	CGPoint center = CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0);
 	CGFloat outerRadius = MIN(bounds.size.width, bounds.size.height) / 2.0 - inset;
-	CGFloat innerRadius = outerRadius * innerRadiusRatio;
-	CGFloat angle = M_PI * 2.0 / (numberOfEdges * 2);
+	CGFloat innerRadius = outerRadius * _innerRadiusRatio;
+	CGFloat angle = M_PI * 2.0 / (_numberOfEdges * 2);
 	UIBezierPath *path = [UIBezierPath bezierPath];
-	for (NSInteger cc=0; cc<numberOfEdges; cc++) {
+	for (NSInteger cc=0; cc<_numberOfEdges; cc++) {
 		CGPoint p0 = CGPointMake(center.x + outerRadius * cos(angle * (cc*2)), center.y + outerRadius * sin(angle * (cc*2)));
 		CGPoint p1 = CGPointMake(center.x + innerRadius * cos(angle * (cc*2+1)), center.y + innerRadius * sin(angle * (cc*2+1)));
 		
