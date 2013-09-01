@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TestButtonViewController : UIViewController {
+@interface TestButtonViewController : UIViewController
     
-}
+@property (unsafe_unretained, nonatomic) IBOutlet UIView *containerView;
 
 @end

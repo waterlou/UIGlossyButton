@@ -59,14 +59,14 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 }
 
 // main draw routine, not including stroke the outer path
-- (void) drawTintColorButton : (CGContextRef)context tintColor : (UIColor *) tintColor isSelected : (BOOL) isSelected;
+- (void) drawTintColorButton : (CGContextRef)context buttonTintColor : (UIColor *) buttonTintColor isSelected : (BOOL) isSelected;
 - (void) strokeButton : (CGContextRef)context color : (UIColor *)color isSelected : (BOOL) isSelected;
 
 @end
 
 @implementation UIGlossyButton
 
-@synthesize tintColor = _tintColor;
+@synthesize buttonTintColor = _buttonTintColor;
 
 #pragma lifecycle
 
@@ -168,7 +168,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 }
 
 - (void)drawRect:(CGRect)rect {
-    UIColor *color = _tintColor;
+    UIColor *color = _buttonTintColor;
     if (![self isEnabled]) {
         if (_disabledColor) color = _disabledColor;
         else color = [UIColor lightGrayColor];
@@ -180,7 +180,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 	BOOL drawOnImage = _backgroundOpacity<1.0;
 	
 	if (drawOnImage) {
-		UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+		UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0f);
 	}
 	
 	CGContextRef ref = UIGraphicsGetCurrentContext();
@@ -197,7 +197,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 		if (color == nil) color = [UIColor darkGrayColor];
 		[self strokeButton : ref color : color isSelected: isSelected];
 	}
-  	[self drawTintColorButton : ref tintColor : color isSelected: isSelected];
+  	[self drawTintColorButton : ref buttonTintColor : color isSelected: isSelected];
 	CGContextRestoreGState(ref);
 	
 	if (drawOnImage) {
@@ -362,7 +362,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 	}
 }
 
-- (void) drawTintColorButton : (CGContextRef)context tintColor : (UIColor *) tintColor isSelected : (BOOL) isSelected {
+- (void) drawTintColorButton : (CGContextRef)context buttonTintColor : (UIColor *) buttonTintColor isSelected : (BOOL) isSelected {
 	CGRect rect = self.bounds;
 	
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
@@ -408,7 +408,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 		CGContextRestoreGState(context);
 	}
 	
-	[tintColor set];
+	[buttonTintColor set];
 	UIRectFillUsingBlendMode(rect, kCGBlendModeOverlay);
 	
 	if (isSelected) {
@@ -420,7 +420,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 #pragma pre-defined buttons
 
 - (void) setActionSheetButtonWithColor : (UIColor*) color {
-	self.tintColor = color;
+	self.buttonTintColor = color;
 	[self setGradientType:kUIGlossyButtonGradientTypeLinearGlossyStandard];
 	[self.titleLabel setFont: [UIFont boldSystemFontOfSize: 17.0f]];
 	[self useWhiteLabel: NO];
@@ -432,7 +432,7 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 }
 
 - (void) setNavigationButtonWithColor : (UIColor*) color {
-	self.tintColor = color;
+	self.buttonTintColor = color;
 	self.disabledBorderColor = [UIColor lightGrayColor];
 	[self setGradientType:kUIGlossyButtonGradientTypeLinearGlossyStandard];
 	[self.titleLabel setFont: [UIFont boldSystemFontOfSize: 12.0f]];
