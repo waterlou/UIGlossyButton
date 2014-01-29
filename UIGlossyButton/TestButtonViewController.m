@@ -153,7 +153,25 @@
 		b.leftArrow = NO;
 		[b setNavigationButtonWithColor:[UIColor navigationBarButtonColor]];
 	}
-    
+
+    // left and right navigation bar (suggested 32px height to match OS's one)
+	{
+		UIGNavigationButton *b;
+		b = (UIGNavigationButton*) [self.view viewWithTag: 1021];
+		b.leftArrow = YES;
+		[b setNavigationButtonWithColor:[UIColor darkGrayColor]];
+        [b setStrokeType: kUIGlossyButtonStrokeTypeBevelUp];
+        [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothExtreme];
+        b.buttonCornerRadius = 7.0;
+        
+		b = (UIGNavigationButton*) [self.view viewWithTag: 1022];
+		b.leftArrow = NO;
+		[b setNavigationButtonWithColor:[UIColor darkGrayColor]];
+        [b setStrokeType: kUIGlossyButtonStrokeTypeBevelUp];
+        [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothExtreme];
+        b.buttonCornerRadius = 5.0;
+	}
+
     /* for button using kUIGlossyButtonStrokeTypeInnerBevelDown, buttonBorderWidth better <= 4.0f */
     
     /* SMS Send Button */
