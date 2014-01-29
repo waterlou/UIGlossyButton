@@ -19,6 +19,7 @@
 		4947D840139CDABE00A98D25 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D83A139CDABE00A98D25 /* UIGlossyButton.m */; };
 		4947D841139CDABE00A98D25 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4947D83C139CDABE00A98D25 /* UIView+LayerEffects.m */; };
 		4947D843139CDC1900A98D25 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4947D842139CDC1800A98D25 /* QuartzCore.framework */; };
+		497A98CB174900B500F06929 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 497A98CA174900B500F06929 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		4947D83C139CDABE00A98D25 /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		4947D83D139CDABE00A98D25 /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
 		4947D842139CDC1800A98D25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		497A98CA174900B500F06929 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		4947D808139CDA2400A98D25 = {
 			isa = PBXGroup;
 			children = (
+				497A98CA174900B500F06929 /* Default-568h@2x.png */,
 				4947D81D139CDA2400A98D25 /* UIGlossyButton */,
 				4947D816139CDA2400A98D25 /* Frameworks */,
 				4947D814139CDA2400A98D25 /* Products */,
@@ -168,6 +171,7 @@
 				4947D822139CDA2400A98D25 /* InfoPlist.strings in Resources */,
 				4947D82B139CDA2400A98D25 /* MainWindow.xib in Resources */,
 				4947D83E139CDABE00A98D25 /* TestButtonViewController.xib in Resources */,
+				497A98CB174900B500F06929 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,10 +249,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIGlossyButton/UIGlossyButton-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "UIGlossyButton/UIGlossyButton-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -260,9 +266,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIGlossyButton/UIGlossyButton-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "UIGlossyButton/UIGlossyButton-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;

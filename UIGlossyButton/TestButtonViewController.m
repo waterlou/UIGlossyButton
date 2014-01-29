@@ -22,10 +22,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,7 +37,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	    
+    
+    // fix force full screen after iOS7
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.containerView.frame = CGRectMake(0, 20.0f, self.view.bounds.size.width, self.view.bounds.size.height-20.0f);
+    }
+    
 	// stand action sheet button
 	UIGlossyButton *b;
 	b = (UIGlossyButton*) [self.view viewWithTag: 1001];
@@ -56,21 +57,21 @@
 
 	// All non iPhone-like but nice buttons
 	b = (UIGlossyButton*) [self.view viewWithTag: 1004];
-	[b useWhiteLabel: YES]; b.tintColor = [UIColor darkGrayColor];
+	[b useWhiteLabel: YES]; b.buttonTintColor = [UIColor darkGrayColor];
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
 
     b = (UIGlossyButton*) [self.view viewWithTag: 1017];
-	[b useWhiteLabel: YES]; b.tintColor = [UIColor darkGrayColor];
+	[b useWhiteLabel: YES]; b.buttonTintColor = [UIColor darkGrayColor];
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
     b.invertGraidentOnSelected = YES;
 
     b = (UIGlossyButton*) [self.view viewWithTag: 1018];
-	[b useWhiteLabel: YES]; b.tintColor = [UIColor purpleColor];
+	[b useWhiteLabel: YES]; b.buttonTintColor = [UIColor purpleColor];
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
     [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothExtreme];
 
     b = (UIGlossyButton*) [self.view viewWithTag: 1019];
-	[b useWhiteLabel: YES]; b.tintColor = [UIColor brownColor];
+	[b useWhiteLabel: YES]; b.buttonTintColor = [UIColor brownColor];
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
     [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal];
 
@@ -78,10 +79,10 @@
 	[b useWhiteLabel: YES];
     b.buttonCornerRadius = 2.0; b.buttonBorderWidth = 1.0f;
 	[b setStrokeType: kUIGlossyButtonStrokeTypeBevelUp];
-    b.tintColor = b.borderColor = [UIColor colorWithRed:70.0f/255.0f green:105.0f/255.0f blue:192.0f/255.0f alpha:1.0f];
+    b.buttonTintColor = b.borderColor = [UIColor colorWithRed:70.0f/255.0f green:105.0f/255.0f blue:192.0f/255.0f alpha:1.0f];
     
 	b = (UIGlossyButton*) [self.view viewWithTag: 1005];
-	[b useWhiteLabel: YES]; b.tintColor = [UIColor whiteColor];
+	[b useWhiteLabel: YES]; b.buttonTintColor = [UIColor whiteColor];
 	b.backgroundOpacity = 0.5;
 	[b setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
 	
@@ -95,13 +96,13 @@
 	
 	// different extra shading (square one in the samples)
 	b = (UIGlossyButton*) [self.view viewWithTag: 1008];
-	b.tintColor = [UIColor greenColor];
+	b.buttonTintColor = [UIColor greenColor];
 	b.innerBorderWidth = 5.0f;
 	b.buttonBorderWidth = 0.0f;
 	b.buttonCornerRadius = 16.0f;
 
 	b = (UIGlossyButton*) [self.view viewWithTag: 1009];
-	b.tintColor = [UIColor blackColor];
+	b.buttonTintColor = [UIColor blackColor];
 	[b useWhiteLabel: YES];
 	b.backgroundOpacity = 0.5;
 	b.innerBorderWidth = 5.0f;
@@ -111,7 +112,7 @@
 	[b setExtraShadingType:kUIGlossyButtonExtraShadingTypeRounded];
 	
 	b = (UIGlossyButton*) [self.view viewWithTag: 1010];
-	b.tintColor = [UIColor darkGrayColor];
+	b.buttonTintColor = [UIColor darkGrayColor];
 	[b useWhiteLabel: YES];
 	b.innerBorderWidth = 5.0f;
 	b.buttonBorderWidth = 0.0f;
@@ -121,7 +122,7 @@
 	b.backgroundOpacity  =0.5;
 
 	b = (UIGlossyButton*) [self.view viewWithTag: 1013];
-	b.tintColor = [UIColor blueColor];
+	b.buttonTintColor = [UIColor blueColor];
 	[b useWhiteLabel: YES];
 	b.innerBorderWidth = 0.0f;
 	b.buttonBorderWidth = 1.0f;
@@ -134,7 +135,7 @@
 	{
 		UIGBadgeButton *b = (UIGBadgeButton*) [self.view viewWithTag: 1014];
 		[b useWhiteLabel:YES];
-		b.tintColor = [UIColor redColor];
+		b.buttonTintColor = [UIColor redColor];
 		[b setGradientType: kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal];
 		b.borderColor = [UIColor whiteColor];
 		b.buttonBorderWidth = 5;
@@ -176,7 +177,7 @@
     
     /* SMS Send Button */
 	b = (UIGlossyButton*) [self.view viewWithTag: 1015];
-	b.tintColor = [UIColor doneButtonColor];
+	b.buttonTintColor = [UIColor doneButtonColor];
 	[b useWhiteLabel: YES];
 	b.innerBorderWidth = 0.0f;
 	b.buttonBorderWidth = 1.0f;
@@ -186,13 +187,23 @@
 
     /* big circle button */
 	b = (UIGlossyButton*) [self.view viewWithTag: 1016];
-	b.tintColor = [UIColor colorWithRed:0.9 green:0.4 blue:0.4 alpha:1.0];
+	b.buttonTintColor = [UIColor colorWithRed:0.9 green:0.4 blue:0.4 alpha:1.0];
 	[b useWhiteLabel: YES];
 	b.buttonBorderWidth = 2.0f;
 	b.buttonCornerRadius = 40.0f;
 	[b setGradientType: kUIGlossyButtonGradientTypeLinearSmoothStandard];
 	[b setStrokeType: kUIGlossyButtonStrokeTypeInnerBevelDown];
     [b setExtraShadingType:kUIGlossyButtonExtraShadingTypeRounded];
+ 
+    /* Flat button */
+	b = (UIGlossyButton*) [self.view viewWithTag: 1021];
+	b.buttonTintColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    b.borderColor = [UIColor darkGrayColor];
+	[b useBlackLabel: YES];
+	b.buttonBorderWidth = 1.0f;
+	b.buttonCornerRadius = 15.0f;
+	[b setGradientType: kUIGlossyButtonGradientTypeSolid];
+	[b setStrokeType: kUIGlossyButtonStrokeTypeSolid];
     
 
 }
@@ -208,6 +219,11 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
