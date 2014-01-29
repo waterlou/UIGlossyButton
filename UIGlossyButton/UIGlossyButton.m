@@ -66,12 +66,11 @@ static void *highlightedObserverContext = &highlightedObserverContext;
 
 @implementation UIGlossyButton
 
-@synthesize buttonTintColor = _buttonTintColor;
-
 #pragma lifecycle
 
 + (void) initialize
 {
+    // default appearance
     id appearance = [[self class] appearance];
     [appearance setButtonCornerRadius: 4.0f];
     [appearance setInnerBorderWidth: 1.0f];

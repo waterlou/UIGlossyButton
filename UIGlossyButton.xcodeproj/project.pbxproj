@@ -42,7 +42,7 @@
 		4947D83C139CDABE00A98D25 /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		4947D83D139CDABE00A98D25 /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
 		4947D842139CDC1800A98D25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		497A98CA174900B500F06929 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		497A98CA174900B500F06929 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,6 @@
 		4947D808139CDA2400A98D25 = {
 			isa = PBXGroup;
 			children = (
-				497A98CA174900B500F06929 /* Default-568h@2x.png */,
 				4947D81D139CDA2400A98D25 /* UIGlossyButton */,
 				4947D816139CDA2400A98D25 /* Frameworks */,
 				4947D814139CDA2400A98D25 /* Products */,
@@ -110,6 +109,7 @@
 		4947D81E139CDA2400A98D25 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				497A98CA174900B500F06929 /* Default-568h@2x.png */,
 				4947D81F139CDA2400A98D25 /* UIGlossyButton-Info.plist */,
 				4947D820139CDA2400A98D25 /* InfoPlist.strings */,
 				4947D823139CDA2400A98D25 /* UIGlossyButton-Prefix.pch */,

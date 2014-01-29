@@ -163,7 +163,7 @@
 		[b setNavigationButtonWithColor:[UIColor darkGrayColor]];
         [b setStrokeType: kUIGlossyButtonStrokeTypeBevelUp];
         [b setGradientType:kUIGlossyButtonGradientTypeLinearSmoothExtreme];
-        b.buttonCornerRadius = 7.0;
+        b.buttonCornerRadius = 5.0;
         
 		b = (UIGNavigationButton*) [self.view viewWithTag: 1022];
 		b.leftArrow = NO;
@@ -196,7 +196,7 @@
     [b setExtraShadingType:kUIGlossyButtonExtraShadingTypeRounded];
  
     /* Flat button */
-	b = (UIGlossyButton*) [self.view viewWithTag: 1021];
+	b = (UIGlossyButton*) [self.view viewWithTag: 1023];
 	b.buttonTintColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     b.borderColor = [UIColor darkGrayColor];
 	[b useBlackLabel: YES];
